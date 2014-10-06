@@ -23,6 +23,7 @@ public class MyActivity extends Activity {
     Button btnBlue;
     ImageButton btnImg;
     Button btnSend;
+    EditText colorEditText;
 
     public static final String EXTRA_MESSAGE = "Hi!! here is the message from Naren: ";
 
@@ -37,6 +38,20 @@ public class MyActivity extends Activity {
         btnGreen = (Button) findViewById(R.id.btnGreen);
         btnImg = (ImageButton) findViewById(R.id.btnImg);
         btnSend = (Button) findViewById(R.id.btnSend);
+        colorEditText = (EditText) findViewById(R.id.colorEditText);
+
+        colorEditText.requestFocus();
+        colorEditText.setText("Enter Color here...");
+
+        colorEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // click button code here.
+                Log.d("NAREN:", "I am going to wipe edit text content" );
+                colorEditText.setText("");
+            }
+        });
+
 
         btnGreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +87,10 @@ public class MyActivity extends Activity {
                 EditText text = (EditText) findViewById(R.id.editText);
                 String message = text.getText().toString();
                 intent.putExtra(EXTRA_MESSAGE, message);
+
+                String color = colorEditText.getText().toString();
+                Log.d("Naren:", "Got color as: " + color);
+                intent.putExtra("color", color);
                 startActivity(intent);
             }
         });

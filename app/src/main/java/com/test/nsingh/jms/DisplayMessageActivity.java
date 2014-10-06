@@ -2,10 +2,13 @@ package com.test.nsingh.jms;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -57,6 +60,25 @@ public class DisplayMessageActivity extends Activity {
         textView.setTextSize(40);
         textView.setText(message);
 
+        String color = intent.getStringExtra("color").toLowerCase();
+        Log.d("Naren:", "Got color as: " + color);
+
+//        LinearLayout display_activity_view = (LinearLayout)findViewById(R.id.display_activity_background);
+//        textView.setBackgroundColor(Color.GREEN);
+
+        int color_code = Color.BLACK;
+        try
+        {
+            color_code = Color.parseColor(color) ;
+        }
+        catch(IllegalArgumentException ex){
+            Log.d("NAREN:", "Error caught while parsing color : " + ex.getMessage());
+        }
+        finally {
+            Log.d("NAREN:", "Unknown Exception");
+        }
+
+        textView.setBackgroundColor(color_code);
         setContentView(textView);
     }
 
